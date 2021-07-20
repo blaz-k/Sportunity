@@ -1,8 +1,5 @@
 
-from flask import render_template, request
-
-from models.user import User
-from models.settings import db
+from flask import render_template
 
 
 def home():
@@ -21,5 +18,6 @@ def contact():
     return render_template("public/contact.html")
 
 
-def registration():
-    return render_template("public/registration.html")
+
+def login():
+    return render_template("public/login.html")

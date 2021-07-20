@@ -1,0 +1,37 @@
+from flask import render_template, request
+
+from models.settings import db
+from models.user import User
+from hashlib import sha256
+
+
+def registration():
+    if request.method == "GET":
+        return render_template("public/registration.html")
+
+    elif request.method == "POST":
+
+        first_name = request.form.get("first-name")
+        last_name = request.form.get("last-name")
+        email = request.form.get("email")
+        address = request.form.get("address")
+        country = request.form.get("country")
+        phone_number = request.form.get("phone-number")
+        password = request.form.get("password")
+        password_repeat = request.form.get("password-repeat")
+
+        existing_user = db.query(User).filter_by(email=email).first()
+
+        if existing_user:
+            return "ERROR: This email already exists."
+
+        else:
+            if password == password_repeat:
+                password_hash = sha256(password.encode("utf-8")).hexdigest()
+
+                new_user = User(first_name=first_name, last_name=last_name, email=email,
+                                address=address, country=country, phone_number=phone_number, password=password_hash)
+                new_user.save()
+                return "Your registration was successful"
+            else:
+                return "PASSWORDS DO NOT MATCH!!!"

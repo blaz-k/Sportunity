@@ -1,6 +1,5 @@
 todo.txt
-webfonts/
-img/
+
 venv/
 *.pyc
 .idea
