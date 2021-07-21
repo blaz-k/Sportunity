@@ -1,13 +1,9 @@
-{% if user %}
-{% extends "user/contact.html" %}
-{% else %}
-{% extends "public/base.html" %}
-{% endif %}
+
+{% extends "user/base.html" %}
 
 {% block title %}Contact{% endblock title %}
 
 {% block content %}
-
     <!-- Modal -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -71,5 +67,4 @@
         </div>
     </div>
     <!-- End Contact -->
-
 {% endblock content %}
