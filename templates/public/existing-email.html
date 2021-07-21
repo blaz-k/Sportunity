@@ -1,0 +1,17 @@
+
+{% extends "public/base.html" %}
+
+
+
+{% block title %}Registration{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">ERROR: This email already exists!</h1>
+            <p>
+               <a href="/registration">Try again</a>
+            </p>
+        </div>
+    </div>
+{% endblock content %}

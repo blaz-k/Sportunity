@@ -23,7 +23,7 @@ def registration():
         existing_user = db.query(User).filter_by(email=email).first()
 
         if existing_user:
-            return "ERROR: This email already exists."
+            return render_template("public/existing-email.html")
 
         else:
             if password == password_repeat:
@@ -32,6 +32,6 @@ def registration():
                 new_user = User(first_name=first_name, last_name=last_name, email=email,
                                 address=address, country=country, phone_number=phone_number, password=password_hash)
                 new_user.save()
-                return "Your registration was successful"
+                return render_template("public/successful-registration.html")
             else:
-                return "PASSWORDS DO NOT MATCH!!!"
+                return render_template("public/passwords-not-match.html")
