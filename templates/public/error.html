@@ -1,0 +1,17 @@
+
+{% extends "public/base.html" %}
+
+
+
+{% block title %}Error{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">ERROR: You need to login to see contents of this page!</h1>
+            <p>
+               <a href="/login">Go to login</a> | <a href="/registration">Or signup</a>
+            </p>
+        </div>
+    </div>
+{% endblock content %}

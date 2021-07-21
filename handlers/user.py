@@ -6,11 +6,11 @@ from hashlib import sha256
 
 
 def dashboard():
-    if request.method == "GET":
-        session_cookie = request.cookies.get('session')
+    session_cookie = request.cookies.get('session')
+    if session_cookie:
 
-        if session_cookie:
-            #user = db.query(User).filter_by(session_token=session_cookie).first()
-            return render_template("user/dashboard.html")
-        else:
-            return render_template("public/passwords-not-match.html")
+        user = db.query(User).filter_by(session_token=session_cookie).first()
+        if user:
+            return render_template("user/dashboard.html", user=user)
+
+    return render_template("public/error.html")
