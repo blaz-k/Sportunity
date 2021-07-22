@@ -22,6 +22,7 @@ app.add_url_rule(rule="/contact", endpoint="public.contact", view_func=public.co
 
 # USER
 app.add_url_rule(rule="/dashboard", endpoint="user.dashboard", view_func=user.dashboard, methods=["GET"])
+app.add_url_rule(rule="/edit-profile", endpoint="user.edit-profile", view_func=user.edit_profile, methods=["GET"])
 
 
 if __name__ == '__main__':

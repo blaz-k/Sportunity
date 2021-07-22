@@ -2,7 +2,6 @@ from flask import render_template, request
 
 from models.settings import db
 from models.user import User
-from hashlib import sha256
 
 
 def dashboard():
@@ -14,3 +13,7 @@ def dashboard():
             return render_template("user/dashboard.html", user=user)
 
     return render_template("public/error.html")
+
+
+def edit_profile():
+    return render_template("user/edit-profile.html")
