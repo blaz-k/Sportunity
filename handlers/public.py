@@ -31,7 +31,7 @@ def billing():
 
 def cart():
     session_cookie = request.cookies.get("session")
-    products = db.query(Product).all()
+    products = db.query(Product).first()
 
     if request.method == "GET":
 
