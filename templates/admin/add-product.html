@@ -11,7 +11,7 @@
 
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" action="/post-product">
+            <form class="col-md-9 m-auto" method="post" action="/add-product">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Product name</label>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputemail">Tags</label>
-                        <input type="text" class="form-control mt-1" id="tag" name="tag" placeholder="Tags" >
+                        <input type="text" class="form-control mt-1" id="tag" name="tags" placeholder="Tags" >
                     </div>
                 </div>
                 <div class="mb-3">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="inputsubject">Information</label>
-                  <textarea class="form-control mt-1" placeholder="Information" id="floatingTextarea2" style="height: 300px"></textarea>
+                  <textarea class="form-control mt-1" placeholder="Information" name="information" id="floatingTextarea2" style="height: 300px"></textarea>
                 </div>
                     <!-- End Registration -->
                 <div class="mb-3">
@@ -42,8 +42,6 @@
                 <div>
                      <a href="https://postimages.org/"  target= "_blank"  class="btn btn-secondary my-2">You can upload image here</a>
                 </div>
-
-
                 <div class="row">
                     <div class="col text-end mt-2">
                         <button type="submit" class="btn btn-success btn-lg px-3">Add product</button>

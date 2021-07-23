@@ -3,7 +3,7 @@ from models.user import User
 
 from flask import render_template, request
 
-
+ 
 def about():
     session_cookie = request.cookies.get("session")
 
