@@ -18,6 +18,8 @@ app.add_url_rule(rule="/", endpoint="public.home", view_func=public.home, method
 app.add_url_rule(rule="/shop", endpoint="public.shop", view_func=public.shop, methods=["GET"])
 app.add_url_rule(rule="/about", endpoint="public.about", view_func=public.about, methods=["GET"])
 app.add_url_rule(rule="/contact", endpoint="public.contact", view_func=public.contact, methods=["GET"])
+app.add_url_rule(rule="/cart", endpoint="public.cart", view_func=public.cart, methods=["GET"])
+app.add_url_rule(rule="/billing", endpoint="public.billing", view_func=public.billing, methods=["GET"])
 
 
 # USER
