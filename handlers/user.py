@@ -50,3 +50,5 @@ def edit_profile():
         user.save()
 
         return render_template("user/profile-changes.html")
+
+

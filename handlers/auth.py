@@ -57,6 +57,7 @@ def registration():
         password_repeat = request.form.get("password-repeat")
 
         existing_user = db.query(User).filter_by(email=email).first()
+        admin = db.query(User).filter_by(admin=int(1))
 
         if existing_user:
             return render_template("public/existing-email.html")

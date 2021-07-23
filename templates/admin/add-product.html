@@ -1,0 +1,104 @@
+{% extends "user/base.html" %}
+
+
+{% block content %}
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">ADD NEW PRODUCT</h1>
+        </div>
+    </div>
+
+
+    <div class="container py-5">
+        <div class="row py-5">
+            <form class="col-md-9 m-auto" method="post" action="/post-product">
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">Product name</label>
+                        <input type="text" class="form-control mt-1" id="name" name="product-name" placeholder="Product name" required>
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">Tags</label>
+                        <input type="text" class="form-control mt-1" id="tag" name="tag" placeholder="Tags" >
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="inputsubject">Size</label>
+                    <input type="text" class="form-control mt-1" id="size" name="size" placeholder="Sizes (S/M/L/XL/2XL)" >
+                </div>
+                <div class="mb-3">
+                    <label for="inputsubject">Price</label>
+                    <input type="text" class="form-control mt-1" id="price" name="price" placeholder="Price" required>
+                </div>
+                <div class="mb-3">
+                  <label for="inputsubject">Information</label>
+                  <textarea class="form-control mt-1" placeholder="Information" id="floatingTextarea2" style="height: 300px"></textarea>
+                </div>
+                    <!-- End Registration -->
+                <div class="mb-3">
+                    <label for="inputsubject">Image link (Direct link)</label>
+                    <input type="text" name="image" class="form-control mt-1" id="floatingImage" placeholder="Image link" required>
+                </div>
+                <div>
+                     <a href="https://postimages.org/"  target= "_blank"  class="btn btn-secondary my-2">You can upload image here</a>
+                </div>
+
+
+                <div class="row">
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Add product</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="container-fluid bg-light py-1">
+        <div class="col-md-6 m-auto text-center">
+            <h2 class="h2">It will look like this</h2>
+        </div>
+    </div>
+<div class="container py-5">
+      <div class="col-md-9 m-auto product">
+          <div class="card mb-4 product-wap rounded-0">
+              <div class="card rounded-0">
+                  <img class="card-img rounded-0 img-fluid" src="static/img/shop_01.jpg">
+                  <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                      <ul class="list-unstyled">
+                          <li><a class="btn btn-success text-white" href="#"><i class="far fa-heart"></i></a></li>
+                          <li><a class="btn btn-success text-white mt-2" href="#"><i class="far fa-eye"></i></a></li>
+                          <li><a class="btn btn-success text-white mt-2" href="#"><i class="fas fa-cart-plus"></i></a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <a href="shop-single.html" class="h3 text-decoration-none">Name of product</a>
+                  <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                      <li>M/L/X/XL</li>
+                      <li class="pt-2">
+                          <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                          <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                          <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                          <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                          <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                      </li>
+                  </ul>
+                  <ul class="list-unstyled d-flex justify-content-center mb-1">
+                      <li>
+                          <i class="text-warning fa fa-star"></i>
+                          <i class="text-warning fa fa-star"></i>
+                          <i class="text-warning fa fa-star"></i>
+                          <i class="text-muted fa fa-star"></i>
+                          <i class="text-muted fa fa-star"></i>
+                      </li>
+                  </ul>
+                  <p class="text-center mb-0">$250.00</p>
+              </div>
+          </div>
+      </div>
+
+</div>
+
+
+{% endblock content %}

@@ -1,6 +1,6 @@
 from flask import Flask
 from models.settings import db
-from handlers import public, auth, user
+from handlers import public, auth, user, admin
 
 
 app = Flask(__name__)
@@ -23,6 +23,9 @@ app.add_url_rule(rule="/contact", endpoint="public.contact", view_func=public.co
 # USER
 app.add_url_rule(rule="/dashboard", endpoint="user.dashboard", view_func=user.dashboard, methods=["GET"])
 app.add_url_rule(rule="/edit-profile", endpoint="user.edit-profile", view_func=user.edit_profile, methods=["GET", "POST"])
+
+# ADMIN
+app.add_url_rule(rule="/add-product", endpoint="admin.add-product", view_func=admin.add_product, methods=["GET", "POST"])
 
 
 if __name__ == '__main__':
