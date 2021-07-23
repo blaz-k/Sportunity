@@ -10,4 +10,6 @@ class Product(db.Model):
     total = db.Column(db.String)
     information = db.Column(db.String)
     product_name = db.Column(db.String)
+    size = db.Column(db.String)
+    image = db.Column(db.String)
     created = db.Column(db.DateTime, default=datetime.now())
