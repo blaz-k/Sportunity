@@ -31,14 +31,15 @@ def billing():
 
 def cart():
     session_cookie = request.cookies.get("session")
+    products = db.query(Product).all()
 
     if request.method == "GET":
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
             if user:
-                return render_template("public/cart.html", user=user)
-    return render_template("public/cart.html")
+                return render_template("public/cart.html", user=user, products=products)
+    return render_template("public/cart.html", products=products)
 
 
 def contact():
