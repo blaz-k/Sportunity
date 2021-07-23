@@ -32,7 +32,7 @@ def login():
     return redirect(url_for("user.dashboard"))
 
 
-def logout():
+def logout(): 
     session_cookie = request.cookies.get("session")
     user = db.query(User).filter_by(session_token=session_cookie).first()
     user.session_token = ""
