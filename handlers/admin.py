@@ -6,7 +6,6 @@ from models.product import Product
 from hashlib import sha256
 
 
-
 def add_product():
     session_cookie = request.cookies.get("session")
     user = db.query(User).filter_by(session_token=session_cookie).first()
@@ -26,7 +25,6 @@ def add_product():
         new_product = Product(product_name=product_name, tags=tags, size=size,
                               price=price, information=information, image=image)
         new_product.save()
-
 
         return redirect(url_for("user.dashboard"))
 
