@@ -22,16 +22,12 @@ def add_to_cart(product_id):
 
     session_cookie = request.cookies.get("session")
     product = db.query(Product).get(int(product_id))
-    user = None
-    if session_cookie:
-        user = db.query(User).filter_by(session_token=session_cookie).first()
+    user = db.query(User).filter_by(session_token=session_cookie).first()
 
-    products = db.query(Product).all()
-    if request.method == "POST":
+    add_cart = Cart(user=user, product=product)
+    add_cart.save()
 
-        add_cart = Cart(user=user, product=product)
-        add_cart.save()
-        return render_template("public/cart.html", product_id=product_id, user=user, products=products)
+    return render_template("public/cart.html", product_id=product_id, user=user)
 
 
 def billing():
