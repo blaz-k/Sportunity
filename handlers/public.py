@@ -1,3 +1,4 @@
+from flask import redirect, url_for
 from models.settings import db
 from models.product import Product
 from models.cart import Cart
@@ -8,7 +9,7 @@ from flask import render_template, request
 
 def about():
     session_cookie = request.cookies.get("session")
-
+    print("ABOUT")
     if request.method == "GET":
 
         if session_cookie:
@@ -19,16 +20,21 @@ def about():
 
 
 def add_to_cart(product_id):
+    print("ADD TO CART")
+
 
     session_cookie = request.cookies.get("session")
     product = db.query(Product).get(int(product_id))
     user = db.query(User).filter_by(session_token=session_cookie).first()
+    print("tukaj naprej:!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(product)
+    print(user)
 
     add_cart = Cart(user=user, product=product)
     add_cart.save()
+    print(add_cart)
 
-    return render_template("public/cart.html", product_id=product_id, user=user)
-
+    return redirect(url_for("public.cart", product_id=product_id))
 
 def billing():
     session_cookie = request.cookies.get("session")
@@ -43,6 +49,8 @@ def billing():
 
 
 def cart():
+    print("CART")
+
     session_cookie = request.cookies.get("session")
     products = db.query(Product).first()
     cart = db.query(Cart).all()
@@ -57,6 +65,8 @@ def cart():
 
 
 def contact():
+    print("CONTACT")
+
     session_cookie = request.cookies.get("session")
 
     if request.method == "GET":
@@ -69,10 +79,14 @@ def contact():
 
 
 def home():
+    print("HOME")
+
     return render_template("public/index.html")
 
 
 def shop():
+    print("SHOP")
+
     session_cookie = request.cookies.get("session")
     products = db.query(Product).all()
     if request.method == "GET":
