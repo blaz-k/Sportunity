@@ -12,6 +12,8 @@ db.create_all()
 app.add_url_rule(rule="/registration", endpoint="auth.registration", view_func=auth.registration, methods=["GET", "POST"])
 app.add_url_rule(rule="/login", endpoint="public.login", view_func=auth.login, methods=["GET", "POST"])
 app.add_url_rule(rule="/logout", endpoint="public.logout", view_func=auth.logout, methods=["GET"])
+app.add_url_rule(rule="/verify-token/<token>", endpoint="auth.verify_token", view_func=auth.verify_token, methods=["GET"])
+
 
 # PUBLIC
 app.add_url_rule(rule="/", endpoint="public.home", view_func=public.home, methods=["GET"])
