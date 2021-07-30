@@ -9,7 +9,6 @@ from flask import render_template, request
 
 def about():
     session_cookie = request.cookies.get("session")
-    print("ABOUT")
     if request.method == "GET":
 
         if session_cookie:
@@ -44,22 +43,20 @@ def billing():
 
 def cart():
     session_cookie = request.cookies.get("session")
-    products = db.query(Product).first()
+    products = db.query(Product).all()
     user = db.query(User).filter_by(session_token=session_cookie).first()
-    cart = db.query(Cart).filter_by(user=user).all()
+    carts = db.query(Cart).filter_by(user=user).all()
 
     if request.method == "GET":
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
             if user:
-                return render_template("public/cart.html", user=user, products=products, cart=cart)
-    return render_template("public/cart.html", products=products, cart=cart)
+                return render_template("public/cart.html", user=user, products=products, carts=carts)
+    return render_template("public/cart.html", products=products, carts=carts)
 
 
 def contact():
-    print("CONTACT")
-
     session_cookie = request.cookies.get("session")
 
     if request.method == "GET":
@@ -72,14 +69,10 @@ def contact():
 
 
 def home():
-    print("HOME")
-
     return render_template("public/index.html")
 
 
 def shop():
-    print("SHOP")
-
     session_cookie = request.cookies.get("session")
     products = db.query(Product).all()
     if request.method == "GET":
