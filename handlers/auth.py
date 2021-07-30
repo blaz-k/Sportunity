@@ -59,7 +59,7 @@ def registration():
         password_repeat = request.form.get("password-repeat")
 
         existing_user = db.query(User).filter_by(email=email).first()
-        admin = db.query(User).filter_by(admin=int(1))
+        admin = db.query(User).filter_by(admin=True).first()
 
         if existing_user:
             return render_template("public/existing-email.html")
@@ -73,6 +73,8 @@ def registration():
                                 address=address, country=country, phone_number=phone_number,
                                 password=password_hash, verification_token=verify_email_token)
                 new_user.save()
+                if not admin:
+                    new_user.admin = True
 
                 verification_url = "http://127.0.0.1:5000/verify-token/" + verify_email_token
 

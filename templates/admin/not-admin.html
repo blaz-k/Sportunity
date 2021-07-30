@@ -1,0 +1,15 @@
+{% if user %}
+{% extends "user/base.html" %}
+{% else %}
+{% extends "public/base.html" %}
+{% endif %}
+
+{% block title %}Error{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">ERROR: You are not admin!</h1>
+        </div>
+    </div>
+{% endblock content %}

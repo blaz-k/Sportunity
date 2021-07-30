@@ -3,12 +3,14 @@ from flask import render_template, request, redirect, url_for
 from models.settings import db
 from models.user import User
 from models.product import Product
-from hashlib import sha256
 
 
 def add_product():
     session_cookie = request.cookies.get("session")
     user = db.query(User).filter_by(session_token=session_cookie).first()
+
+    if user.admin is False: 
+        return render_template("admin/not-admin.html")
 
     if request.method == "GET":
         return render_template("admin/add-product.html")
