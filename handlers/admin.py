@@ -9,7 +9,7 @@ def add_product():
     session_cookie = request.cookies.get("session")
     user = db.query(User).filter_by(session_token=session_cookie).first()
 
-    if user.admin is False: 
+    if user.admin is False:
         return render_template("admin/not-admin.html")
 
     if request.method == "GET":

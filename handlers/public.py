@@ -20,21 +20,15 @@ def about():
 
 
 def add_to_cart(product_id):
-    print("ADD TO CART")
-
-
     session_cookie = request.cookies.get("session")
     product = db.query(Product).get(int(product_id))
     user = db.query(User).filter_by(session_token=session_cookie).first()
-    print("tukaj naprej:!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(product)
-    print(user)
 
     add_cart = Cart(user=user, product=product)
     add_cart.save()
-    print(add_cart)
 
     return redirect(url_for("public.cart", product_id=product_id))
+
 
 def billing():
     session_cookie = request.cookies.get("session")
@@ -49,18 +43,17 @@ def billing():
 
 
 def cart():
-    print("CART")
-
     session_cookie = request.cookies.get("session")
     products = db.query(Product).first()
-    cart = db.query(Cart).all()
+    user = db.query(User).filter_by(session_token=session_cookie).first()
+    cart = db.query(Cart).filter_by(user=user).all()
 
     if request.method == "GET":
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
             if user:
-                return render_template("public/cart.html", user=user, products=products)
+                return render_template("public/cart.html", user=user, products=products, cart=cart)
     return render_template("public/cart.html", products=products, cart=cart)
 
 
