@@ -1,4 +1,5 @@
 from models.settings import db
+from datetime import datetime
 
 
 class Invoice(db.Model):
@@ -9,3 +10,4 @@ class Invoice(db.Model):
     product_name = db.Column(db.String)
     size = db.Column(db.String)
     quantity = db.Column(db.Integer)
+    created = db.Column(db.DateTime, default=datetime.now())
