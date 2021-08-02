@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for
 from models.settings import db
 from models.user import User
 from models.product import Product
+from models.invoice import Invoice
 
 
 def add_product():
@@ -23,10 +24,11 @@ def add_product():
         price = request.form.get("price")
         information = request.form.get("information")
         image = request.form.get("image")
+        quantity = request.form.get("quantity")
 
         new_product = Product(product_name=product_name, tags=tags, size=size,
-                              price=price, information=information, image=image)
-        new_product.save()
+                              price=price, information=information, image=image, quantity=quantity)
+        new_product.save()  
 
         return redirect(url_for("user.dashboard"))
 
