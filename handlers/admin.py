@@ -28,7 +28,7 @@ def add_product():
 
         new_product = Product(product_name=product_name, tags=tags, size=size,
                               price=price, information=information, image=image, quantity=quantity)
-        new_product.save()  
+        new_product.save()
 
         return redirect(url_for("user.dashboard"))
 

@@ -8,7 +8,8 @@
 
 
 {% block content %}
- <div class="cart_section">
+
+ <div class="cart_section container-fluid"><!-- added container-fluid to check if it is better-->
      <div class="container-fluid">
          <div class="row">
              <div class="col-lg-10 offset-lg-1">
@@ -33,7 +34,7 @@
                                      </div>
                                      <div class="cart_item_quantity cart_info_col">
                                          <div class="cart_item_title">Quantity</div>
-                                         <div class="cart_item_text">(za urediti)</div>
+                                         <div class="cart_item_text"><p><button type="button" class="btn btn-outline-secondary mr-2"><i class="bi bi-plus"></i></button><i class="bi bi-cart-check-fill m-2" style="font-size: 1.7rem;"></i><button type="button" class="btn btn-outline-secondary ml-2"><i class="bi bi-dash"></i></button></p></div>
                                      </div>
                                      <div class="cart_item_price cart_info_col">
                                          <div class="cart_item_title">Price</div>
