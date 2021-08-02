@@ -7,3 +7,6 @@ class Cart(db.Model):
     user = db.relationship("User")
     id_product = db.Column(db.Integer, db.ForeignKey('products.id'))
     product = db.relationship("Product")
+    invoice_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    invoice = db.relationship("Invoice")
+
