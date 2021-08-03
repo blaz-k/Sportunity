@@ -34,3 +34,17 @@ def add_product():
 
     if not user:
         return redirect(url_for("/auth/login"))
+
+
+def delete_product(product_id):
+    session_cookie = request.cookies.get("session")
+    user = db.query(User).filter_by(session_token=session_cookie).first()
+
+    if user.admin is False:
+        return render_template("admin/not-admin.html")
+
+    product = db.query(Product).filter_by(id=int(product_id)).first()
+
+    if request.method == "GET":
+        return render_template("admin/product-delete.html", product=product)
+

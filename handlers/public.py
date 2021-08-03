@@ -84,3 +84,17 @@ def shop():
             if user:
                 return render_template("public/shop.html", user=user, products=products)
         return render_template("public/shop.html", products=products)
+
+
+def delete_cart_product(product_id):
+    if request.method == "POST":
+
+        product = db.query(Product).filter_by(id=int(product_id)).first()
+        """
+        image = request.form.get("image")
+        product_name
+        price = 
+        """
+        product.delete()
+
+        return redirect(url_for("public.cart"))

@@ -52,7 +52,9 @@
                 <h5 class="mb-0">{{cart.product.price}} €</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                    <form method="post">
+                <a href="/cart/{{cart.product.id}}/delete" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                    </form>
               </div>
             </div>
           </div>

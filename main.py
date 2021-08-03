@@ -23,6 +23,7 @@ app.add_url_rule(rule="/contact", endpoint="public.contact", view_func=public.co
 app.add_url_rule(rule="/cart", endpoint="public.cart", view_func=public.cart, methods=["GET"])
 app.add_url_rule(rule="/billing", endpoint="public.billing", view_func=public.billing, methods=["GET"])
 app.add_url_rule(rule="/cart/<product_id>", endpoint="public.add_to_cart", view_func=public.add_to_cart, methods=["POST"])
+app.add_url_rule(rule="/cart/<product_id>/delete", endpoint="product.delete_cart_product", view_func=public.delete_cart_product, methods=["POST"])
 
 
 # USER
