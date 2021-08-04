@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from models.settings import db
 from models.user import User
 from models.product import Product
-from models.invoice import Invoice
+#from models.invoice import Invoice
 
 
 def add_product():
@@ -47,4 +47,5 @@ def delete_product(product_id):
 
     if request.method == "GET":
         return render_template("admin/product-delete.html", product=product)
+
 
