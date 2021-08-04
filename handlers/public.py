@@ -3,7 +3,7 @@ from models.settings import db
 from models.product import Product
 from models.cart import Cart
 from models.user import User
-#from models.invoice import Invoice
+from models.invoice import Invoice
 
 
 from flask import render_template, request

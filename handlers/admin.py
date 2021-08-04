@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from models.settings import db
 from models.user import User
 from models.product import Product
-#from models.invoice import Invoice
+from models.invoice import Invoice
 
 
 def add_product():

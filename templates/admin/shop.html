@@ -1,8 +1,6 @@
-{% if user %}
-{% extends "user/base.html" %}
-{% else %}
-{% extends "public/base.html" %}
-{% endif %}
+
+{% extends "admin/base.html" %}
+
 {% block title %}Shop{% endblock title %}
 {% block headline %}Shop{% endblock headline %}
 
@@ -12,7 +10,7 @@
       <div class="row">
 
           <div class="col-lg-3">
-              <h1 class="h2 pb-4">Categories</h1>
+              <h1 class="h2 pb-4">ADMIN Categories</h1>
               <ul class="list-unstyled templatemo-accordion">
                   <li class="pb-3">
                       <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
@@ -90,15 +88,11 @@
                                             <button class="btn btn-success text-white mt-2"><i class="fas fa-cart-plus"></i></button>
                                           </form>
                                       </li>
-                                      {% if user and user.admin %}
                                       <li>
-                                          <form action="#" method="post">
-                                            <button class="btn btn-success text-white mt-2">
-                                                <i class="fas fa-trash" aria-hidden="true"></i>
-                                            </button>
+                                          <form action="/cart/{{product.id}}" method="post">
+                                            <button class="btn btn-success text-white mt-2"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                           </form>
                                       </li>
-                                      {% endif %}
                                   </ul>
                               </div>
                           </div>
