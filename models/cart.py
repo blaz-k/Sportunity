@@ -9,4 +9,5 @@ class Cart(db.Model):
     product = db.relationship("Product")
     id_invoice = db.Column(db.Integer, db.ForeignKey('invoices.id'))
     invoice = db.relationship("Invoice")
+    quantity = db.Column(db.Integer)
 
