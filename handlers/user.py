@@ -6,7 +6,6 @@ from hashlib import sha256
 from models.invoice import Invoice
 
 
-
 def dashboard():
     session_cookie = request.cookies.get('session')
     if session_cookie:

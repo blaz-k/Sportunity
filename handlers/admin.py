@@ -43,9 +43,8 @@ def delete_product(product_id):
     if user.admin is False:
         return render_template("admin/not-admin.html")
 
-    product = db.query(Product).filter_by(id=int(product_id)).first()
+    product = db.query(Product).get(int(product_id))
 
-    if request.method == "GET":
-        return render_template("admin/product-delete.html", product=product)
-
-
+    if request.method == "POST":
+        product.delete()
+        return redirect(url_for("user.dashboard"))

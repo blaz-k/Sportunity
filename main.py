@@ -32,6 +32,7 @@ app.add_url_rule(rule="/edit-profile", endpoint="user.edit-profile", view_func=u
 
 # ADMIN
 app.add_url_rule(rule="/add-product", endpoint="admin.add-product", view_func=admin.add_product, methods=["GET", "POST"])
+app.add_url_rule(rule="/shop/<product_id>/delete", endpoint="admin.delete_product", view_func=admin.delete_product, methods=["GET", "POST"])
 
 
 if __name__ == '__main__':

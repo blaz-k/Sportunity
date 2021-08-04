@@ -10,14 +10,13 @@ from flask import render_template, request
 
 
 def about():
-    admin = db.query(User).filter_by(admin=True).first()
     session_cookie = request.cookies.get("session")
     if request.method == "GET":
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
             if user:
-                return render_template("public/about.html", user=user, admin=admin)
+                return render_template("public/about.html", user=user)
     return render_template("public/about.html")
 
 
