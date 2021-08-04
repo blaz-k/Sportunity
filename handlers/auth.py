@@ -5,7 +5,7 @@ from models.user import User
 from hashlib import sha256
 import uuid
 from utils import send_email, is_localhost
-from models.invoice import Invoice
+#from models.invoice import Invoice
 
 
 

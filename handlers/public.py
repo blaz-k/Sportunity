@@ -3,20 +3,21 @@ from models.settings import db
 from models.product import Product
 from models.cart import Cart
 from models.user import User
-from models.invoice import Invoice
+#from models.invoice import Invoice
 
 
 from flask import render_template, request
 
 
 def about():
+    admin = db.query(User).filter_by(admin=True).first()
     session_cookie = request.cookies.get("session")
     if request.method == "GET":
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
             if user:
-                return render_template("public/about.html", user=user)
+                return render_template("public/about.html", user=user, admin=admin)
     return render_template("public/about.html")
 
 
@@ -24,9 +25,15 @@ def add_to_cart(product_id):
     session_cookie = request.cookies.get("session")
     product = db.query(Product).get(int(product_id))
     user = db.query(User).filter_by(session_token=session_cookie).first()
+    cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
 
-    add_cart = Cart(user=user, product=product)
-    add_cart.save()
+    if not cart_item:
+        add_cart = Cart(user=user, product=product, quantity=1)
+        add_cart.save()
+
+    else:
+        cart_item.quantity += 1
+        cart_item.save()
 
     return redirect(url_for("public.cart", product_id=product_id))
 
@@ -81,20 +88,20 @@ def shop():
 
         if session_cookie:
             user = db.query(User).filter_by(session_token=session_cookie).first()
+
             if user:
                 return render_template("public/shop.html", user=user, products=products)
+
         return render_template("public/shop.html", products=products)
 
 
 def delete_cart_product(product_id):
     if request.method == "POST":
+        session_cookie = request.cookies.get("session")
+        product = db.query(Product).get(int(product_id))
+        user = db.query(User).filter_by(session_token=session_cookie).first()
+        cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
 
-        product = db.query(Product).filter_by(id=int(product_id)).first()
-        """
-        image = request.form.get("image")
-        product_name
-        price = 
-        """
-        product.delete()
+        cart_item.delete()
 
         return redirect(url_for("public.cart"))
