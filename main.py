@@ -25,6 +25,7 @@ app.add_url_rule(rule="/billing", endpoint="public.billing", view_func=public.bi
 app.add_url_rule(rule="/cart/<product_id>", endpoint="public.add_to_cart", view_func=public.add_to_cart, methods=["POST"])
 app.add_url_rule(rule="/cart/<product_id>/delete", endpoint="product.delete_cart_product", view_func=public.delete_cart_product, methods=["POST"])
 app.add_url_rule(rule="/cart/<product_id>/add", endpoint="public.add_more_product", view_func=public.add_more_product, methods=["POST"])
+app.add_url_rule(rule="/cart/<product_id>/remove", endpoint="public.remove_one_cart_product", view_func=public.remove_one_cart_product, methods=["POST"])
 
 
 # USER
