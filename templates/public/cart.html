@@ -43,10 +43,13 @@
                 <input id="form1" min="0" name="quantity" value="{{cart.quantity}}" type="number"
                   class="form-control form-control-sm" />
 
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
+                <form action="/cart/{{cart.product.id}}/add" method="post">
+                  <button class="btn btn-link px-2"
+                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                      <i class="fas fa-plus"></i>
+                  </button>
+                </form>
+
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <h5 class="mb-0">{{cart.product.price}} €</h5>
