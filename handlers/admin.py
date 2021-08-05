@@ -24,10 +24,10 @@ def add_product():
         price = request.form.get("price")
         information = request.form.get("information")
         image = request.form.get("image")
-        quantity = request.form.get("quantity")
+        stock = request.form.get("stock")
 
         new_product = Product(product_name=product_name, tags=tags, size=size,
-                              price=price, information=information, image=image, quantity=quantity)
+                              price=price, information=information, image=image, stock=stock)
         new_product.save()
 
         return redirect(url_for("user.dashboard"))

@@ -112,13 +112,14 @@
                     Edit profile
                   </a>
                 </li>
+                  {% if user and user.admin %}
                 <li class="nav-item">
                   <a class="nav-link" href="/add-product">
                     <span data-feather="folder-plus"></span>
                     Post a product
                   </a>
                 </li>
-
+                    {% endif %}
               </ul>
 
               <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
