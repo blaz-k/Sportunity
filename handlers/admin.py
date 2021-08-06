@@ -48,3 +48,21 @@ def delete_product(product_id):
     if request.method == "POST":
         product.delete()
         return redirect(url_for("user.dashboard"))
+
+
+def invoice():
+    first_name = request.form.get("first-name")
+    last_name = request.form.get("last-name")
+    email = request.form.get("email")
+    address = request.form.get("address")
+    phone_number = request.form.get("phone-number")
+    country = request.form.get("country")
+
+    existing_user = db.query(User).filter_by(email=email).first()
+
+    new_invoice = Invoice(first_name=first_name, last_name=last_name, email=email,
+                          address=address, phone_number=phone_number, country=country)
+    new_invoice.save()
+
+    return render_template("admin/invoice.html")
+

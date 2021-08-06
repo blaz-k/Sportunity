@@ -50,7 +50,7 @@ def add_to_cart(product_id):
     user = db.query(User).filter_by(session_token=session_cookie).first()
     cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
 
-    total = product * quantity
+    #total = product * quantity
     if not cart_item:
         add_cart = Cart(user=user, product=product, quantity=1)
         add_cart.save()
