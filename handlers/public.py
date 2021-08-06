@@ -62,18 +62,6 @@ def add_to_cart(product_id):
 
     return redirect(url_for("public.cart", product_id=product_id))
 
-"""
-def billing():
-    session_cookie = request.cookies.get("session")
-
-    if request.method == "GET":
-
-        if session_cookie:
-            user = db.query(User).filter_by(session_token=session_cookie).first()
-            if user:
-                return render_template("public/billing.html", user=user)
-    return render_template("public/billing.html")
-"""
 
 def cart():
     session_cookie = request.cookies.get("session")

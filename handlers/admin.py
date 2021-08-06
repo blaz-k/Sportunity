@@ -42,12 +42,13 @@ def billing():
     products = db.query(Product).all()
     user = db.query(User).filter_by(session_token=session_cookie).first()
     carts = db.query(Cart).filter_by(user=user).all()
+    invoices = db.query(Invoice).all()
 
     if session_cookie:
         user = db.query(User).filter_by(session_token=session_cookie).first()
         if user:
-            return render_template("public/billing.html", user=user, products=products, carts=carts)
-    return render_template("public/billing.html", products=products, carts=carts)
+            return render_template("public/billing.html", user=user, products=products, carts=carts, invoices=invoices)
+    return render_template("public/billing.html", products=products, carts=carts, invoices=invoices)
 
 
 def delete_product(product_id):
@@ -70,6 +71,7 @@ def invoice(cart_id):
     address = request.form.get("address")
     phone_number = request.form.get("phone-number")
     country = request.form.get("country")
+    city = request.form.get("city")
 
     # dobi userja
     session_cookie = request.cookies.get("session")
@@ -78,7 +80,7 @@ def invoice(cart_id):
     carts = db.query(Cart).get(int(cart_id))
 
     new_invoice = Invoice(first_name=first_name, last_name=last_name,
-                          address=address, phone_number=phone_number, country=country)
+                          address=address, phone_number=phone_number, country=country, city=city)
     new_invoice.save()
 
     #carts.invoice
