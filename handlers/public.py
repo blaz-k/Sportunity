@@ -37,9 +37,11 @@ def remove_one_cart_product(product_id):
     product = db.query(Product).get(int(product_id))
     user = db.query(User).filter_by(session_token=session_cookie).first()
     cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
+    # if it is more than 0 you can remove one
+    if cart_item.quantity > 0:
 
-    cart_item.quantity -= 1
-    cart_item.save()
+        cart_item.quantity -= 1
+        cart_item.save()
 
     return redirect(url_for("public.cart", product_id=product_id))
 
@@ -50,7 +52,6 @@ def add_to_cart(product_id):
     user = db.query(User).filter_by(session_token=session_cookie).first()
     cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
 
-    #total = product * quantity
     if not cart_item:
         add_cart = Cart(user=user, product=product, quantity=1)
         add_cart.save()
@@ -125,7 +126,7 @@ def delete_cart_product(product_id):
         product = db.query(Product).get(int(product_id))
         user = db.query(User).filter_by(session_token=session_cookie).first()
         cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
-        # urediti da ce je produkt zbrisan s strani admina da pokaze template
+        # urediti da ce je produkt zbrisan s strani admina da pokaze template  --- naredi fake delete
         if product:
             cart_item.delete()
         else:
