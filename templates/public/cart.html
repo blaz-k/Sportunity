@@ -54,7 +54,7 @@
 
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">{{cart.quantity}} * {{cart.product.price}} €</h5>
+                <h5 class="mb-0">{{ cart.quantity * cart.product.price | float }} €</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                     <form method="post" action="/cart/{{cart.product.id}}/delete">
@@ -80,7 +80,7 @@
 
         <div class="card">
           <div class="card-body">
-            <button type="button" class="btn btn-warning btn-block btn-lg" ><a href="/billing">Proceed to Pay</a></button>
+            <a href="/billing" class="btn btn-warning btn-block btn-lg">Proceed to Pay</a>
           </div>
         </div>
 

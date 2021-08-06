@@ -21,7 +21,7 @@ app.add_url_rule(rule="/shop", endpoint="public.shop", view_func=public.shop, me
 app.add_url_rule(rule="/about", endpoint="public.about", view_func=public.about, methods=["GET"])
 app.add_url_rule(rule="/contact", endpoint="public.contact", view_func=public.contact, methods=["GET"])
 app.add_url_rule(rule="/cart", endpoint="public.cart", view_func=public.cart, methods=["GET"])
-app.add_url_rule(rule="/billing", endpoint="public.billing", view_func=public.billing, methods=["GET"])
+app.add_url_rule(rule="/billing", endpoint="public.billing", view_func=admin.billing, methods=["GET"])
 app.add_url_rule(rule="/cart/<product_id>", endpoint="public.add_to_cart", view_func=public.add_to_cart, methods=["POST"])
 app.add_url_rule(rule="/cart/<product_id>/delete", endpoint="product.delete_cart_product", view_func=public.delete_cart_product, methods=["POST"])
 app.add_url_rule(rule="/cart/<product_id>/add", endpoint="public.add_more_product", view_func=public.add_more_product, methods=["POST"])

@@ -62,7 +62,7 @@ def add_to_cart(product_id):
 
     return redirect(url_for("public.cart", product_id=product_id))
 
-
+"""
 def billing():
     session_cookie = request.cookies.get("session")
 
@@ -73,7 +73,7 @@ def billing():
             if user:
                 return render_template("public/billing.html", user=user)
     return render_template("public/billing.html")
-
+"""
 
 def cart():
     session_cookie = request.cookies.get("session")

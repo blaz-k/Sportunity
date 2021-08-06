@@ -13,4 +13,5 @@ class Product(db.Model):
     size = db.Column(db.String)
     image = db.Column(db.String)
     stock = db.Column(db.Integer)
+    deleted = db.Column(db.Boolean, default=False)
     created = db.Column(db.DateTime, default=datetime.now())
