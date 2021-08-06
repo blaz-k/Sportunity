@@ -16,4 +16,8 @@ class Invoice(db.Model):
     product_name = db.Column(db.String)
     size = db.Column(db.String)
     quantity = db.Column(db.Integer)
+    id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User")
+    id_product = db.Column(db.Integer, db.ForeignKey('products.id'))
+    product = db.relationship("Product")
     created = db.Column(db.DateTime, default=datetime.now())
