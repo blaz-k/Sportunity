@@ -38,7 +38,7 @@ def remove_one_cart_product(product_id):
     user = db.query(User).filter_by(session_token=session_cookie).first()
     cart_item = db.query(Cart).filter_by(user=user, product=product, invoice=None).first()
     # if it is more than 0 you can remove one
-    if cart_item.quantity > 0:
+    if cart_item.quantity > 1:
 
         cart_item.quantity -= 1
         cart_item.save()
