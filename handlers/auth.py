@@ -8,8 +8,6 @@ from utils import send_email, is_localhost
 from models.invoice import Invoice
 
 
-
-
 def login():
     if request.method == "GET":
         return render_template("public/login.html")

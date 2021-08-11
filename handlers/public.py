@@ -1,4 +1,5 @@
 from flask import redirect, url_for
+
 from models.settings import db
 from models.product import Product
 from models.cart import Cart
@@ -30,6 +31,46 @@ def add_more_product(product_id):
     cart_item.save()
 
     return redirect(url_for("public.cart", product_id=product_id))
+
+
+def billing():
+    session_cookie = request.cookies.get("session")
+
+    if not session_cookie:
+        return "ERROR"
+
+    user = db.query(User).filter_by(session_token=session_cookie).first()
+    cart_items = db.query(Cart).filter_by(user=user, invoice=None).all()
+
+    if request.method == "GET":
+
+        return render_template("public/billing.html", carts=cart_items)
+
+    elif request.method == "POST":
+        first_name = request.form.get("first-name")
+        last_name = request.form.get("last-name")
+        address = request.form.get("address")
+        phone_number = request.form.get("phone-number")
+        country = request.form.get("country")
+        city = request.form.get("city")
+
+        total = 0
+        for cart_item in cart_items:
+            total += float(cart_item.product.price) * cart_item.quantity
+
+        # SHIPPING: If total is less than 80 than we add 5 eur
+        if total < 80:
+            total += 5
+
+        invoice = Invoice(first_name=first_name, last_name=last_name, address=address, phone_number=phone_number,
+                          country=country, city=city, user=user, tax="22", total=total)
+        invoice.save()
+
+        for cart_item in cart_items:
+            cart_item.invoice = invoice
+            cart_item.save()
+
+        return redirect(url_for("public.invoice", invoice_id=invoice.id))
 
 
 def remove_one_cart_product(product_id):
@@ -92,6 +133,13 @@ def contact():
 
 def home():
     return render_template("public/index.html")
+
+
+def invoice_show(invoice_id):
+    invoice = db.query(Invoice).get(int(invoice_id))
+    cart_items = db.query(Cart).filter_by(invoice=invoice).all()
+
+    return render_template("public/invoice.html", cart_items=cart_items, invoice=invoice)
 
 
 def shop():

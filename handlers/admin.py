@@ -37,42 +37,6 @@ def add_product():
         return redirect(url_for("/auth/login"))
 
 
-def billing():
-    session_cookie = request.cookies.get("session")
-
-    if not session_cookie:
-        return "ERROR"
-
-    user = db.query(User).filter_by(session_token=session_cookie).first()
-    cart_items = db.query(Cart).filter_by(user=user).all()
-
-    if request.method == "GET":
-
-        return render_template("public/billing.html", carts=cart_items)
-
-    elif request.method == "POST":
-        first_name = request.form.get("first-name")
-        last_name = request.form.get("last-name")
-        address = request.form.get("address")
-        phone_number = request.form.get("phone-number")
-        country = request.form.get("country")
-        city = request.form.get("city")
-
-        total = 0
-        for cart_item in cart_items:
-            total += float(cart_item.product.price) * cart_item.quantity
-
-        # SHIPPING: If total is less than 80 than we add 5 eur
-        if total < 80:
-            total += 5
-
-        new_invoice = Invoice(first_name=first_name, last_name=last_name, address=address, phone_number=phone_number,
-                              country=country, city=city, user=user, tax="22", total=total)
-        new_invoice.save()
-
-        return render_template("admin/invoice.html")
-
-
 def delete_product(product_id):
     session_cookie = request.cookies.get("session")
     user = db.query(User).filter_by(session_token=session_cookie).first()
@@ -86,6 +50,3 @@ def delete_product(product_id):
         product.delete()
         return redirect(url_for("user.dashboard"))
 
-
-def invoice():
-    return render_template("admin/invoice.html")

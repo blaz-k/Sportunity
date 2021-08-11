@@ -27,8 +27,18 @@
                                         <td>From</td>
                                     </tr>
                                     <tr class="content">
-                                        <td class="font-weight-bold">Google <br>Attn: John Smith Pymont <br>Australia</td>
-                                        <td class="font-weight-bold">Facebook <br> Attn: John Right Polymont <br> USA</td>
+                                        <td class="font-weight-bold">
+                                            {{invoice.first_name}} {{invoice.last_name}} <br>
+                                            {{invoice.address}}<br>
+                                            {{invoice.city}}<br>
+                                            {{invoice.country}}<br>
+                                        </td>
+                                        <td class="font-weight-bold">
+                                            Sportunity<br>
+                                            Jemceva 26<br>
+                                            1236 Trzin<br>
+                                            Slovenia<br>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -39,28 +49,27 @@
                                 <tbody>
                                     <tr class="add">
                                         <td>Description</td>
-                                        <td>Days</td>
-                                        <td>Price</td>
+                                        <td>Quantity</td>
+                                        <td>Price per item</td>
                                         <td class="text-center">Total</td>
                                     </tr>
+                                    {% for cart_item in cart_items %}
                                     <tr class="content">
-                                        <td>Website Redesign</td>
-                                        <td>15</td>
-                                        <td>$1,500</td>
-                                        <td class="text-center">$22,500</td>
+                                        <td>{{cart_item.product.product_name}}</td>
+                                        <td>{{cart_item.product.quantity}}</td>
+                                        <td>{{cart_item.product.price}} €</td>
+                                        <td class="text-center">{{cart_item.quantity * cart_item.product.price | float }} €</td>
                                     </tr>
+                                    {% endfor %}
+
+                                    {% if (invoice.total | float) < 80 %}
                                     <tr class="content">
-                                        <td>Logo & Identity</td>
-                                        <td>10</td>
-                                        <td>$1,500</td>
-                                        <td class="text-center">$15,000</td>
+                                        <td>Shipping</td>
+                                        <td>1</td>
+                                        <td>5 €</td>
+                                        <td class="text-center">5 €</td>
                                     </tr>
-                                    <tr class="content">
-                                        <td>Marketing Collateral</td>
-                                        <td>3</td>
-                                        <td>$1,500</td>
-                                        <td class="text-center">$4,500</td>
-                                    </tr>
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>
@@ -78,7 +87,7 @@
                                         <td></td>
                                         <td>$40,000</td>
                                         <td>2,500</td>
-                                        <td class="text-center">$42,500</td>
+                                        <td class="text-center">{{invoice.total}}</td>
                                     </tr>
                                 </tbody>
                             </table>
