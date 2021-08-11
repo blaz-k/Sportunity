@@ -12,9 +12,6 @@ class Invoice(db.Model):
     country = db.Column(db.String)
     tax = db.Column(db.String)  # v procentih
     total = db.Column(db.String)  # with tax
-    quantity = db.Column(db.Integer)
     id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship("User")
-    id_product = db.Column(db.Integer, db.ForeignKey('products.id'))
-    product = db.relationship("Product")
     created = db.Column(db.DateTime, default=datetime.now())
