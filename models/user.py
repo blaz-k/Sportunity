@@ -3,6 +3,8 @@ from datetime import datetime
 
 
 class User(db.Model):
+    __tablename__ = "User"
+
     id = db.Column(db.Integer, primary_key=True)
     admin = db.Column(db.Boolean, default=False)
     first_name = db.Column(db.String)

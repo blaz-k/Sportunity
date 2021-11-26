@@ -1,6 +1,7 @@
 from flask import redirect, url_for
 
 from models.settings import db
+
 from models.product import Product
 from models.cart import Cart
 from models.user import User
