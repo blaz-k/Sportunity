@@ -3,7 +3,6 @@ from datetime import datetime
 
 
 class Product(db.Model):
-    __tablename__ = "Product"
     id = db.Column(db.Integer, primary_key=True)
     tags = db.Column(db.String)
     price = db.Column(db.String)

@@ -3,7 +3,6 @@ from datetime import datetime
 
 
 class Invoice(db.Model):
-    __tablename__ = "Invoice"
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)

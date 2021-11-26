@@ -2,7 +2,6 @@ from models.settings import db
 
 
 class Cart(db.Model):
-    __tablename__ = "Cart"
 
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer, db.ForeignKey('users.id'))

@@ -1,12 +1,12 @@
 from flask import Flask
 from models.settings import db
-db.create_all()
 
 from handlers import public, auth, user, admin
 
 
 app = Flask(__name__)
 
+db.create_all()
 
 
 # AUTHENTICATION
