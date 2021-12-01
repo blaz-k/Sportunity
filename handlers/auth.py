@@ -79,7 +79,7 @@ def registration():
                 verification_url = "http://127.0.0.1:5000/verify-token/" + verify_email_token
 
                 if not is_localhost():
-                    verification_url = "#" + verify_email_token
+                    verification_url = "https://sportunity-shop.herokuapp.com/verify-token/" + verify_email_token
 
                 body = """
                     Verify your email for SPORTUNITY: {}.
